@@ -1,9 +1,15 @@
 import { Request, Response, NextFunction } from "express";
 import http from "http";
 import express from "express";
+<<<<<<< HEAD
 import Logging from "./v1/config/logging.js";
 import { PORT } from "./v1/config/config.js";
 import loader from "./v1/loaders/index.js";
+=======
+import Logging from "./v1/config/logging";
+import { PORT } from "./v1/config/config";
+import loader from "./v1/loaders";
+>>>>>>> 5f2ffcf592d3f294dfb2abefecce7b665af77d2e
 
 const exitHandler = (server: http.Server | null) => {
   if (server) {
@@ -16,6 +22,10 @@ const exitHandler = (server: http.Server | null) => {
   }
 };
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5f2ffcf592d3f294dfb2abefecce7b665af77d2e
 const unExpectedErrorHandler = (server: http.Server | null) => {
   return function (error: Error) {
     Logging.error(error);
