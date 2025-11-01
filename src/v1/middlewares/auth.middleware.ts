@@ -1,26 +1,15 @@
 import { Request, Response, NextFunction } from "express";
-<<<<<<< HEAD
 import { verifyToken } from "../utils/jwt.utils.js";
 import dotenv from "dotenv";
 
 dotenv.config();
-=======
-import { verifyToken } from "../utils/jwt.utils";
-import dotenv from 'dotenv'
-
-dotenv.config()
->>>>>>> 5f2ffcf592d3f294dfb2abefecce7b665af77d2e
 
 // Define a custom interface that extends Request
 interface RequestWithUserData extends Request {
   userData?: { userId: string }; // Adjust the type as needed
 }
 export interface RequestWithUser extends Request {
-<<<<<<< HEAD
   user?: any; // Use any or define a more specific type
-=======
-  user?: any // Use any or define a more specific type
->>>>>>> 5f2ffcf592d3f294dfb2abefecce7b665af77d2e
 }
 
 export interface AuthenticatedRequest extends Request {
@@ -83,7 +72,6 @@ export const adminAuthMiddleware = (
 //   }
 // };
 
-<<<<<<< HEAD
 export const isUserAuthenticated = (
   req: AuthenticatedRequest,
   res: Response,
@@ -109,23 +97,3 @@ export const isUserAuthenticated = (
     return res.status(401).json({ message: "Authentication failed", error });
   }
 };
-=======
-export const isUserAuthenticated = (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-  try {
-    const token = req.headers.authorization?.split(' ')[1];
-    if (!token) {
-      return res.status(401).json({ message: 'Authentication failed' });
-    }
-    const decodedToken = verifyToken(token); // Use your verifyToken function
-    if (decodedToken && typeof decodedToken === "object" && "userId" in decodedToken) {
-      req.user = { _id: decodedToken.userId }; // Add user ID directly to req.user
-      next();
-    } else {
-      return res.status(401).json({ message: 'Token verification failed' });
-    }
-  } catch (error) {
-    return res.status(401).json({ message: 'Authentication failed', error });
-  }
-};
-
->>>>>>> 5f2ffcf592d3f294dfb2abefecce7b665af77d2e
